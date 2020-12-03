@@ -12,7 +12,19 @@
 export const monitoringTemplate = {
   order: 0,
   settings: {
-    'index.refresh_interval': '5s'
+      index: {
+        routing: {
+          allocation: {
+            require: {
+              'storage-tier': 'hot'
+            }
+          }
+        },
+        'refresh_interval': '5s',
+        'number_of_shards': '3',
+        'auto_expand_replicas': '0-3',
+        'number_of_replicas': '3'
+      }
   },
   mappings: {
     'wazuh-agent': {
